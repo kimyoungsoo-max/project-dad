@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#1A56A0">
+  <meta name="theme-color" content="#2F5D50">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>프로젝트 대디</title>
@@ -12,44 +12,56 @@
 </head>
 <body>
 
-  <!-- ══ 화면 1: 메인 — 지역 선택 ══ -->
+  <!-- ══ 화면 1: 메인 ══ -->
   <div id="screen-main" class="screen active">
-    <div style="padding: 32px 16px 0;">
+    <div class="main-top">
       <p class="main-greeting">아빠, 이번엔<br>어디로 갈까? 🗺️</p>
       <p class="main-sub">가고 싶은 지역을 눌러봐요</p>
     </div>
-    <div class="region-grid" id="region-grid" style="padding: 0 16px 32px;">
-      <!-- app.js에서 동적 생성 -->
+    <!-- 히어로 이미지: assets/hero.png 교체 시 div 전체를 <img>로 변경 -->
+    <div class="main-hero">
+      <img src="assets/hero.png" alt="한국 여행 풍경">
+    </div>
+    <div class="region-section">
+      <div class="region-label">지역 선택</div>
+      <div class="region-grid" id="region-grid"></div>
     </div>
   </div>
 
-  <!-- ══ 화면 2: 상세 — 지도 + 명소 목록 ══ -->
+  <!-- ══ 화면 2: 상세 ══ -->
   <div id="screen-detail" class="screen">
-
-    <!-- 헤더 -->
     <header class="app-header">
       <button class="btn-back" id="btn-back" aria-label="뒤로가기">◀</button>
-      <span class="header-title" id="detail-title">지역명</span>
+      <span class="header-title" id="detail-title"></span>
     </header>
-
     <div class="detail-body">
 
       <!-- 필터 -->
       <div class="filter-wrap">
         <div class="filter-row" id="filter-row">
-          <button class="btn-filter active" data-cat="전체">🗺️<br>전체</button>
-          <button class="btn-filter" data-cat="낚시">🎣<br>낚시</button>
-          <button class="btn-filter" data-cat="관광">🌿<br>관광</button>
-          <button class="btn-filter" data-cat="음식점">🍚<br>음식</button>
+          <button class="btn-filter active" data-cat="전체">
+            <span class="filter-icon">🗺️</span>
+            <span class="filter-label">전체</span>
+          </button>
+          <button class="btn-filter" data-cat="낚시">
+            <span class="filter-icon">🎣</span>
+            <span class="filter-label">낚시</span>
+          </button>
+          <button class="btn-filter" data-cat="관광">
+            <span class="filter-icon">🌿</span>
+            <span class="filter-label">관광</span>
+          </button>
+          <button class="btn-filter" data-cat="음식점">
+            <span class="filter-icon">🍚</span>
+            <span class="filter-label">음식</span>
+          </button>
         </div>
       </div>
 
       <!-- SVG 지도 -->
-      <div class="map-wrap" id="map-wrap">
-        <!-- map.js에서 korea-map.svg 인라인 삽입 -->
-      </div>
+      <div class="map-wrap" id="map-wrap"></div>
 
-      <!-- 진행 현황 바 -->
+      <!-- 진행 현황 -->
       <div class="progress-wrap">
         <div class="progress-info">
           <div class="progress-label" id="progress-label">0곳 다녀왔어요!</div>
@@ -63,19 +75,15 @@
             <span class="progress-pct" id="progress-pct">0%</span>
           </div>
         </div>
-        <div class="progress-complete-msg" id="progress-complete-msg"
-             style="display:none;"></div>
+        <div class="progress-complete-msg" id="progress-complete-msg" style="display:none;"></div>
       </div>
 
-      <!-- 명소 카드 목록 -->
-      <div class="card-list" id="card-list">
-        <!-- app.js에서 동적 생성 -->
-      </div>
-
+      <!-- 카드 목록 -->
+      <div class="card-list" id="card-list"></div>
     </div>
   </div>
 
-  <!-- ══ Bottom Sheet — 더보기 팝업 ══ -->
+  <!-- ══ Bottom Sheet ══ -->
   <div class="bottom-sheet-overlay" id="bottom-sheet-overlay">
     <div class="bottom-sheet">
       <div class="sheet-handle"></div>
@@ -92,21 +100,18 @@
     <div class="camera-viewfinder">
       <video id="camera-video" autoplay playsinline muted></video>
     </div>
-    <div style="display:flex; flex-direction:column; align-items:center;
-                gap:16px; width:100%; max-width:360px;">
-      <button class="btn-shutter"    id="btn-shutter"    aria-label="촬영">📸</button>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:360px;">
+      <button class="btn-shutter" id="btn-shutter" aria-label="촬영">📸</button>
       <button class="btn-skip-photo" id="btn-skip-photo">사진 없이 완료하기</button>
     </div>
   </div>
 
-  <!-- ══ 토스트 메시지 ══ -->
+  <!-- ══ 토스트 ══ -->
   <div class="toast" id="toast"></div>
 
-  <!-- ══ JS 모듈 로드 순서 중요 ══ -->
   <script src="js/storage.js"></script>
   <script src="js/map.js"></script>
   <script src="js/camera.js"></script>
   <script src="js/app.js"></script>
-
 </body>
 </html>
