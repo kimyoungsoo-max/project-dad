@@ -1,0 +1,18 @@
+{
+  "name": "프로젝트 대디",
+  "short_name": "대디",
+  "description": "아빠의 국내여행 버킷리스트 도장깨기",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F2F2F0",
+  "theme_color": "#1A56A0",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
